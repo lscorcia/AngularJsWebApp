@@ -12,14 +12,13 @@
 <body>
     <div class="navbar navbar-expand-lg navbar-light bg-light fixed-top" role="navigation" data-ng-controller="indexController">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa fa-chevron-down"></span>
             </button>
-            <li class="navbar-brand"><a href="#!/">Home</a></li>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <a class="navbar-brand" href="#!/">Home</a>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item" data-ng-hide="!authentication.isAuth"><a class="nav-link" href="#">Welcome {{authentication.userName}}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!/">Home</a></li>
                     <li class="nav-item" data-ng-hide="!authentication.isAuth"><a class="nav-link" href="#!/orders">My Orders</a></li>
                     <li class="nav-item" data-ng-hide="!authentication.isAuth"><a class="nav-link" href="" data-ng-click="logOut()">Logout</a></li>
                     <li class="nav-item" data-ng-hide="authentication.isAuth"> <a class="nav-link" href="#!/login">Login</a></li>
