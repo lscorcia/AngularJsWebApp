@@ -74,6 +74,10 @@
     {
       "library": "flag-icon-css@3.2.0",
       "destination": "lib/flag-icon-css"
+    },
+    {
+      "library": "angular-chart.js@1.1.1",
+      "destination": "lib/angular"
     }
   ]
 }
