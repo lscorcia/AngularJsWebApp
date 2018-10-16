@@ -75,7 +75,7 @@
     <Content Include="coreuidemo\js\app.js" />
     <Content Include="coreuidemo\js\controllers.js" />
     <Content Include="coreuidemo\js\controllers\charts.js" />
-    <Content Include="coreuidemo\js\controllers\main.js" />
+    <Content Include="coreuidemo\js\controllers\mainController.js" />
     <Content Include="coreuidemo\js\controllers\widgets.js" />
     <Content Include="coreuidemo\js\demo\routes.js" />
     <Content Include="coreuidemo\js\directives.js" />
@@ -135,7 +135,7 @@
     <Content Include="coreui\js\app.js" />
     <Content Include="coreui\js\controllers.js" />
     <Content Include="coreui\js\controllers\loginController.js" />
-    <Content Include="coreui\js\controllers\main.js" />
+    <Content Include="coreui\js\controllers\mainController.js" />
     <Content Include="coreui\js\directives.js" />
     <Content Include="coreui\js\routes.js" />
     <Content Include="coreui\js\services\authService.js" />

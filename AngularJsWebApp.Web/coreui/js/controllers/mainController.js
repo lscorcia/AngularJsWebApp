@@ -1,5 +1,5 @@
 'use strict';
-//main.js
+//mainController.js
 angular
     .module('app')
     .controller('cardChartCtrl1', cardChartCtrl1)
