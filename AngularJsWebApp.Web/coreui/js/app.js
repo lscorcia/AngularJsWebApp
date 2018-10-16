@@ -1,3 +1,4 @@
+'use strict';
 // Default colors
 var brandPrimary = '#20a8d8';
 var brandSuccess = '#4dbd74';
@@ -23,11 +24,21 @@ angular
         cfpLoadingBarProvider.includeSpinner = false;
         cfpLoadingBarProvider.latencyThreshold = 1;
     }])
-    .run(['$rootScope', '$state', '$stateParams', 'authService', function ($rootScope, $state, $stateParams, authService) {
-        authService.fillAuthData();
-        $rootScope.$on('$stateChangeSuccess', function () {
-            document.body.scrollTop = document.documentElement.scrollTop = 0;
-        });
-        $rootScope.$state = $state;
-        return $rootScope.$stateParams = $stateParams;
-    }]);
+    .run(['$rootScope', '$state', '$stateParams', '$transitions', 'authService',
+        function ($rootScope, $state, $stateParams, $transitions, authService) {
+            authService.fillAuthData();
+            $transitions.onBefore({}, function (transition) {
+                var isLogin = transition.to().name === "appSimple.login";
+                if (!isLogin) {
+                    // now, redirect only not authenticated
+                    if (!authService.isLoggedIn()) {
+                        return $state.target('appSimple.login');
+                    }
+                }
+            });
+            $rootScope.$on('$stateChangeSuccess', function () {
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+            });
+            $rootScope.$state = $state;
+            return $rootScope.$stateParams = $stateParams;
+        }]);
