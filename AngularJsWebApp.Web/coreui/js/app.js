@@ -28,7 +28,8 @@ angular
         function ($rootScope, $state, $stateParams, $transitions, authService) {
             authService.fillAuthData();
             $transitions.onBefore({}, function (transition) {
-                var isLogin = transition.to().name === "appSimple.login";
+                var isLogin = transition.to().name === "appSimple.login" ||
+                    transition.to().name === "appSimple.register";
                 if (!isLogin) {
                     // now, redirect only not authenticated
                     if (!authService.isLoggedIn()) {

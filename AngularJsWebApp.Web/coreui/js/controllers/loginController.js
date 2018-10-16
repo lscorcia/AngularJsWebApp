@@ -1,7 +1,7 @@
 ﻿'use strict';
 angular
     .module('app')
-    .controller('loginController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
+    .controller('loginController', ['$scope', '$state', 'authService', function ($scope, $state, authService) {
 
     $scope.loginData = {
         userName: "",
@@ -14,7 +14,7 @@ angular
 
         authService.login($scope.loginData).then(function (response) {
 
-                $location.path('/orders');
+                $state.go('app.main');
 
             },
             function (err) {

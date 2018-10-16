@@ -136,6 +136,7 @@
     <Content Include="coreui\js\controllers.js" />
     <Content Include="coreui\js\controllers\loginController.js" />
     <Content Include="coreui\js\controllers\mainController.js" />
+    <Content Include="coreui\js\controllers\registerController.js" />
     <Content Include="coreui\js\directives.js" />
     <Content Include="coreui\js\routes.js" />
     <Content Include="coreui\js\services\authService.js" />
@@ -148,6 +149,7 @@
     <Content Include="coreui\views\common\top-nav.html" />
     <Content Include="coreui\views\pages\login.html" />
     <Content Include="coreui\views\main.html" />
+    <Content Include="coreui\views\pages\register.html" />
     <Content Include="index.html" />
     <Content Include="coreuidemo\index.html" />
     <Content Include="lib\angular\angular-breadcrumb.js" />

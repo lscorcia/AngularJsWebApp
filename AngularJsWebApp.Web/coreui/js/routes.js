@@ -121,7 +121,16 @@ angular
                 })
                 .state('appSimple.register', {
                     url: '/register',
-                    templateUrl: 'views/pages/register.html'
+                    templateUrl: 'views/pages/register.html',
+                    controller: 'registerController',
+                    resolve: {
+                        loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            // you can lazy load controllers
+                            return $ocLazyLoad.load({
+                                files: ['js/controllers/registerController.js']
+                            });
+                        }]
+                    }
                 })
                 .state('appSimple.404', {
                     url: '/404',
