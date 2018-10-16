@@ -31,13 +31,10 @@ angular
         function ($rootScope, $state, $stateParams, $transitions, authService) {
             authService.fillAuthData();
             $transitions.onBefore({}, function (transition) {
-                var isLogin = transition.to().name === "appSimple.login" ||
-                    transition.to().name === "appSimple.register";
-                if (!isLogin) {
+                var requiresAuth = transition.to().data && transition.to().data.requiresAuth;
+                if (requiresAuth && !authService.isLoggedIn()) {
                     // now, redirect only not authenticated
-                    if (!authService.isLoggedIn()) {
-                        return $state.target('appSimple.login');
-                    }
+                    return $state.target('appSimple.login');
                 }
             });
             $transitions.onSuccess({}, function () {

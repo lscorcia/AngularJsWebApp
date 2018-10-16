@@ -62,6 +62,9 @@ angular
                     ncyBreadcrumb: {
                         label: 'Home',
                     },
+                    data: {
+                        requiresAuth: true
+                    },
                     //page subtitle goes here
                     params: { subtitle: 'Welcome to ROOT powerfull Bootstrap & AngularJS UI Kit' },
                     resolve: {
@@ -93,6 +96,9 @@ angular
                     //page title goes here
                     ncyBreadcrumb: {
                         label: 'Orders',
+                    },
+                    data: {
+                        requiresAuth: true
                     },
                     //page subtitle goes here
                     resolve: {
@@ -136,6 +142,16 @@ angular
                             });
                         }]
                     }
+                })
+                .state("appSimple.logout", {
+                    url: '/logout',
+                    data: {
+                        requiresAuth: true
+                    },
+                    controller: ['$state', 'authService', function ($state, authService) {
+                        authService.logOut();
+                        $state.transitionTo('appSimple.login', null, { reload: true });
+                    }]
                 })
                 .state('appSimple.register', {
                     url: '/register',
