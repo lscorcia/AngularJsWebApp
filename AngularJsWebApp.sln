@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJsWebApp.API", "Angu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJsWebApp.Web", "AngularJsWebApp.Web\AngularJsWebApp.Web.csproj", "{B9C65B1B-6E55-4F01-B184-79A96B109E6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJsWebApp.Simple.Web", "AngularJsWebApp.Simple.Web\AngularJsWebApp.Simple.Web.csproj", "{D728F5A8-BA6B-4CCB-92F7-20C1062C3887}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJsWebApp.CoreUiDemo.Web", "AngularJsWebApp.CoreUiDemo.Web\AngularJsWebApp.CoreUiDemo.Web.csproj", "{847CB0D5-0D32-43E1-8D34-510E3281823B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B9C65B1B-6E55-4F01-B184-79A96B109E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9C65B1B-6E55-4F01-B184-79A96B109E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9C65B1B-6E55-4F01-B184-79A96B109E6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D728F5A8-BA6B-4CCB-92F7-20C1062C3887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D728F5A8-BA6B-4CCB-92F7-20C1062C3887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D728F5A8-BA6B-4CCB-92F7-20C1062C3887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D728F5A8-BA6B-4CCB-92F7-20C1062C3887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{847CB0D5-0D32-43E1-8D34-510E3281823B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{847CB0D5-0D32-43E1-8D34-510E3281823B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{847CB0D5-0D32-43E1-8D34-510E3281823B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{847CB0D5-0D32-43E1-8D34-510E3281823B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
