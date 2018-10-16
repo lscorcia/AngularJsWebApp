@@ -24,6 +24,9 @@ angular
         cfpLoadingBarProvider.includeSpinner = false;
         cfpLoadingBarProvider.latencyThreshold = 1;
     }])
+    .config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptorService');
+    }])
     .run(['$rootScope', '$state', '$stateParams', '$transitions', 'authService',
         function ($rootScope, $state, $stateParams, $transitions, authService) {
             authService.fillAuthData();
@@ -37,7 +40,7 @@ angular
                     }
                 }
             });
-            $rootScope.$on('$stateChangeSuccess', function () {
+            $transitions.onSuccess({}, function () {
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
             });
             $rootScope.$state = $state;

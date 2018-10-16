@@ -136,10 +136,13 @@
     <Content Include="coreui\js\controllers.js" />
     <Content Include="coreui\js\controllers\loginController.js" />
     <Content Include="coreui\js\controllers\mainController.js" />
+    <Content Include="coreui\js\controllers\ordersController.js" />
     <Content Include="coreui\js\controllers\registerController.js" />
     <Content Include="coreui\js\directives.js" />
     <Content Include="coreui\js\routes.js" />
+    <Content Include="coreui\js\services\authInterceptorService.js" />
     <Content Include="coreui\js\services\authService.js" />
+    <Content Include="coreui\js\services\ordersService.js" />
     <Content Include="coreui\views\common\aside.html" />
     <Content Include="coreui\views\common\footer.html" />
     <Content Include="coreui\views\common\layouts\full.html" />
@@ -149,6 +152,7 @@
     <Content Include="coreui\views\common\top-nav.html" />
     <Content Include="coreui\views\pages\login.html" />
     <Content Include="coreui\views\main.html" />
+    <Content Include="coreui\views\pages\orders.html" />
     <Content Include="coreui\views\pages\register.html" />
     <Content Include="index.html" />
     <Content Include="coreuidemo\index.html" />

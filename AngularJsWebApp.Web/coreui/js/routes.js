@@ -11,7 +11,7 @@ angular
             });
 
             $breadcrumbProvider.setOptions({
-                prefixStateName: 'app.main',
+                prefixStateName: 'app',
                 includeAbstract: true,
                 template: '<li class="breadcrumb-item" ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract"><a ng-switch-when="false" href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a><span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span></li>'
             });
@@ -82,6 +82,24 @@ angular
                             // you can lazy load controllers
                             return $ocLazyLoad.load({
                                 files: ['js/controllers/mainController.js']
+                            });
+                        }]
+                    }
+                })
+                .state('app.orders', {
+                    url: '/orders',
+                    templateUrl: 'views/pages/orders.html',
+                    controller: 'ordersController',
+                    //page title goes here
+                    ncyBreadcrumb: {
+                        label: 'Orders',
+                    },
+                    //page subtitle goes here
+                    resolve: {
+                        loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            // you can lazy load controllers
+                            return $ocLazyLoad.load({
+                                files: ['js/controllers/ordersController.js']
                             });
                         }]
                     }
