@@ -134,6 +134,7 @@
     <Content Include="coreui\index.html" />
     <Content Include="coreui\js\app.js" />
     <Content Include="coreui\js\controllers.js" />
+    <Content Include="coreui\js\controllers\authWidgetController.js" />
     <Content Include="coreui\js\controllers\loginController.js" />
     <Content Include="coreui\js\controllers\mainController.js" />
     <Content Include="coreui\js\controllers\ordersController.js" />
