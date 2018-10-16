@@ -1,34 +1,31 @@
-﻿var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
- 
-app.config(function ($routeProvider) {
- 
-    $routeProvider.when("/home", {
-        controller: "homeController",
-        templateUrl: "/app/views/home.html"
-    });
- 
-    $routeProvider.when("/login", {
-        controller: "loginController",
-        templateUrl: "/app/views/login.html"
-    });
- 
-    $routeProvider.when("/signup", {
-        controller: "signupController",
-        templateUrl: "/app/views/signup.html"
-    });
- 
-    $routeProvider.when("/orders", {
-        controller: "ordersController",
-        templateUrl: "/app/views/orders.html"
-    });
- 
-    $routeProvider.otherwise({ redirectTo: "/home" });
-});
+﻿angular
+    .module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar'])
+    .config(function ($routeProvider) {
+        $routeProvider.when("/home", {
+            controller: "homeController",
+            templateUrl: "/app/views/home.html"
+        });
 
-app.config(function ($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptorService');
-});
+        $routeProvider.when("/login", {
+            controller: "loginController",
+            templateUrl: "/app/views/login.html"
+        });
 
-app.run(['authService', function (authService) {
-    authService.fillAuthData();
-}]);
+        $routeProvider.when("/signup", {
+            controller: "signupController",
+            templateUrl: "/app/views/signup.html"
+        });
+
+        $routeProvider.when("/orders", {
+            controller: "ordersController",
+            templateUrl: "/app/views/orders.html"
+        });
+
+        $routeProvider.otherwise({ redirectTo: "/home" });
+    })
+    .config(function ($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptorService');
+    })
+    .run(['authService', function (authService) {
+        authService.fillAuthData();
+    }]);

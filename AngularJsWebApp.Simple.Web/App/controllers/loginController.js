@@ -1,26 +1,29 @@
 ﻿'use strict';
-app.controller('loginController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
+angular
+    .module('AngularAuthApp')
+    .controller('loginController', ['$scope', '$location', 'authService',
+        function ($scope, $location, authService) {
 
-    $scope.loginData = {
-        userName: "",
-        password: ""
-    };
+            $scope.loginData = {
+                userName: "",
+                password: ""
+            };
 
-    $scope.message = "";
+            $scope.message = "";
 
-    $scope.login = function () {
+            $scope.login = function () {
 
-        authService.login($scope.loginData).then(function (response) {
+                authService.login($scope.loginData).then(function (response) {
 
-                $location.path('/orders');
+                    $location.path('/orders');
 
-            },
-            function (err) {
-                if (err.data)
-                    $scope.message = err.data.error_description;
-                else
-                    $scope.message = err.status + ' - ' + err.statusText;
-            });
-    };
+                },
+                    function (err) {
+                        if (err.data)
+                            $scope.message = err.data.error_description;
+                        else
+                            $scope.message = err.status + ' - ' + err.statusText;
+                    });
+            };
 
-}]);
+        }]);
