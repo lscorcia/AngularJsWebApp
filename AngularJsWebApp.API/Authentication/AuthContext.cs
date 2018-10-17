@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using AngularJsWebApp.API.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace AngularJsWebApp.API.Authorization
+namespace AngularJsWebApp.API.Authentication
 {
     public class AuthContext : IdentityDbContext<IdentityUser>
     {
@@ -13,5 +15,8 @@ namespace AngularJsWebApp.API.Authorization
         {
 
         }
+
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }

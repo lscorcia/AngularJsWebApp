@@ -20,6 +20,8 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" data-ng-hide="!authentication.isAuth"><a class="nav-link" href="#">Welcome {{authentication.userName}}</a></li>
                     <li class="nav-item" data-ng-hide="!authentication.isAuth"><a class="nav-link" href="#!/orders">My Orders</a></li>
+                    <li class="nav-item" data-ng-hide="!authentication.isAuth"><a class="nav-link" href="#!/refresh">Refresh Token</a></li>
+                    <li class="nav-item" data-ng-hide="!authentication.isAuth"><a class="nav-link" href="#!/tokens">Tokens</a></li>
                     <li class="nav-item" data-ng-hide="!authentication.isAuth"><a class="nav-link" href="" data-ng-click="logOut()">Logout</a></li>
                     <li class="nav-item" data-ng-hide="authentication.isAuth"> <a class="nav-link" href="#!/login">Login</a></li>
                     <li class="nav-item" data-ng-hide="authentication.isAuth"> <a class="nav-link" href="#!/signup">Sign Up</a></li>
@@ -64,12 +66,15 @@
     <!-- Load services -->
     <script src="app/services/authInterceptorService.js"></script>
     <script src="app/services/authService.js"></script>
+    <script src="app/services/tokensManagerService.js"></script>
     <script src="app/services/ordersService.js"></script>
     <!-- Load controllers -->
     <script src="app/controllers/indexController.js"></script>
     <script src="app/controllers/homeController.js"></script>
     <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/signupController.js"></script>
+    <script src="app/controllers/refreshController.js"></script>
+    <script src="app/controllers/tokensManagerController.js"></script>
     <script src="app/controllers/ordersController.js"></script>
 </body>
 </html>

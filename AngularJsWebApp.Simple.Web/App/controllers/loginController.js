@@ -6,7 +6,8 @@ angular
 
             $scope.loginData = {
                 userName: "",
-                password: ""
+                password: "",
+                useRefreshTokens: false
             };
 
             $scope.message = "";

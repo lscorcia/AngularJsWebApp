@@ -5,9 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Microsoft.AspNet.Identity;
-using AngularJsWebApp.API.Authorization;
+using AngularJsWebApp.API.Authentication;
 using AngularJsWebApp.API.Models;
+using Microsoft.AspNet.Identity;
 
 namespace AngularJsWebApp.API.Controllers
 {

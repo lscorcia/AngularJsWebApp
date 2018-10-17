@@ -76,6 +76,7 @@
     <Content Include="App\services\authService.js" />
     <Content Include="App\services\ordersService.js" />
     <Content Include="App\views\home.html" />
+    <Content Include="App\views\tokens.html" />
     <Content Include="App\views\login.html" />
     <Content Include="App\views\orders.html" />
     <Content Include="App\views\signup.html" />
@@ -123,6 +124,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\services\tokensManagerService.js" />
+    <Content Include="App\controllers\tokensManagerController.js" />
+    <Content Include="App\controllers\refreshController.js" />
+    <Content Include="App\views\refresh.html" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

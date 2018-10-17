@@ -17,10 +17,12 @@ namespace AngularJsWebApp.API
         {
             HttpConfiguration config = new HttpConfiguration();
 
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            // First, configure the OAuth pipeline
             ConfigureOAuth(app);
 
+            // Then, configure WebAPI
             WebApiConfig.Register(config);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
 
@@ -30,14 +32,14 @@ namespace AngularJsWebApp.API
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new SimpleAuthorizationServerProvider()
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                Provider = new SimpleAuthorizationServerProvider(),
+                RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
 
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
         }
     }
 }
