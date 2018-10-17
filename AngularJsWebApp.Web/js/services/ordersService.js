@@ -1,14 +1,13 @@
 ﻿'use strict';
 angular
     .module('app')
-    .factory('ordersService', ['$http', function ($http) {
-
-    var serviceBase = 'http://localhost:51012/';
+    .factory('ordersService', ['$http', 'ngAuthSettings', 
+        function ($http, ngAuthSettings) {
     var ordersServiceFactory = {};
 
     var _getOrders = function () {
 
-        return $http.get(serviceBase + 'api/orders').then(function (results) {
+        return $http.get(ngAuthSettings.apiServiceBaseUri + 'api/orders').then(function (results) {
             return results;
         });
     };

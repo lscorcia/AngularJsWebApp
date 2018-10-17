@@ -1,8 +1,8 @@
 ﻿'use strict';
 angular
     .module('app')
-    .factory('authInterceptorService', ['$q', '$location', 'localStorageService',
-        function ($q, $location, localStorageService) {
+    .factory('authInterceptorService', ['$q', '$injector', '$state', 'localStorageService',
+        function ($q, $injector, $state, localStorageService) {
 
             var authInterceptorServiceFactory = {};
 
@@ -16,14 +16,24 @@ angular
                 }
 
                 return config;
-            }
+            };
 
             var _responseError = function (rejection) {
                 if (rejection.status === 401) {
-                    $location.path('/login');
+                    var authService = $injector.get('authService');
+                    var authData = localStorageService.get('authorizationData');
+
+                    if (authData) {
+                        if (authData.useRefreshTokens) {
+                            $state.transitionTo('/refresh');
+                            return $q.reject(rejection);
+                        }
+                    }
+                    authService.logOut();
+                    $state.transitionTo('/login');
                 }
                 return $q.reject(rejection);
-            }
+            };
 
             authInterceptorServiceFactory.request = _request;
             authInterceptorServiceFactory.responseError = _responseError;

@@ -110,6 +110,48 @@ angular
                         }]
                     }
                 })
+                .state('app.tokens', {
+                    url: '/tokens',
+                    templateUrl: 'views/pages/tokens.html',
+                    controller: 'tokensManagerController',
+                    //page title goes here
+                    ncyBreadcrumb: {
+                        label: 'Tokens',
+                    },
+                    data: {
+                        requiresAuth: true
+                    },
+                    //page subtitle goes here
+                    resolve: {
+                        loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            // you can lazy load controllers
+                            return $ocLazyLoad.load({
+                                files: ['js/controllers/tokensManagerController.js']
+                            });
+                        }]
+                    }
+                })
+                .state('app.refresh', {
+                    url: '/refresh',
+                    templateUrl: 'views/pages/refresh.html',
+                    controller: 'refreshController',
+                    //page title goes here
+                    ncyBreadcrumb: {
+                        label: 'Refresh Token',
+                    },
+                    data: {
+                        requiresAuth: true
+                    },
+                    //page subtitle goes here
+                    resolve: {
+                        loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            // you can lazy load controllers
+                            return $ocLazyLoad.load({
+                                files: ['js/controllers/refreshController.js']
+                            });
+                        }]
+                    }
+                })
                 .state('appSimple', {
                     abstract: true,
                     templateUrl: 'views/common/layouts/simple.html',

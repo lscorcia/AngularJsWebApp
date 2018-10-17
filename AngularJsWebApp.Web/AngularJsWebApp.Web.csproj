@@ -78,12 +78,15 @@
     <Content Include="js\controllers\loginController.js" />
     <Content Include="js\controllers\mainController.js" />
     <Content Include="js\controllers\ordersController.js" />
+    <Content Include="js\controllers\refreshController.js" />
     <Content Include="js\controllers\registerController.js" />
+    <Content Include="js\controllers\tokensManagerController.js" />
     <Content Include="js\directives.js" />
     <Content Include="js\routes.js" />
     <Content Include="js\services\authInterceptorService.js" />
     <Content Include="js\services\authService.js" />
     <Content Include="js\services\ordersService.js" />
+    <Content Include="js\services\tokensManagerService.js" />
     <Content Include="views\common\aside.html" />
     <Content Include="views\common\footer.html" />
     <Content Include="views\common\layouts\full.html" />
@@ -94,6 +97,7 @@
     <Content Include="views\pages\login.html" />
     <Content Include="views\main.html" />
     <Content Include="views\pages\orders.html" />
+    <Content Include="views\pages\refresh.html" />
     <Content Include="views\pages\register.html" />
     <Content Include="lib\angular\angular-breadcrumb.js" />
     <Content Include="lib\angular\angular-breadcrumb.min.js" />
@@ -689,6 +693,7 @@
     <Content Include="lib\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="lib\simple-line-icons\css\simple-line-icons.min.css" />
     <Content Include="lib\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="views\pages\tokens.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

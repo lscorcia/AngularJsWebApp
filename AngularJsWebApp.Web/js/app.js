@@ -27,6 +27,10 @@ angular
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');
     }])
+    .constant('ngAuthSettings', {
+        apiServiceBaseUri: 'http://localhost:51012/',
+        clientId: 'ngAuthApp'
+    })
     .run(['$rootScope', '$state', '$stateParams', '$transitions', 'authService',
         function ($rootScope, $state, $stateParams, $transitions, authService) {
             authService.fillAuthData();

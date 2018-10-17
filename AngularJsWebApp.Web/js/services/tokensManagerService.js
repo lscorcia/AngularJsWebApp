@@ -1,6 +1,6 @@
 ﻿'use strict';
 angular
-    .module('AngularAuthApp')
+    .module('app')
     .factory('tokensManagerService', ['$http', 'ngAuthSettings', function ($http, ngAuthSettings) {
         var tokenManagerServiceFactory = {};
 
