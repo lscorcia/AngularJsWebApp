@@ -81,26 +81,25 @@ angular
 
                 var authData = localStorageService.get('authorizationData');
 
-                if (authData) {
+                if (authData && authData.useRefreshTokens) {
 
-                    if (authData.useRefreshTokens) {
+                    var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=" + ngAuthSettings.clientId;
 
-                        var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=" + ngAuthSettings.clientId;
+                    localStorageService.remove('authorizationData');
 
-                        localStorageService.remove('authorizationData');
+                    $http.post(ngAuthSettings.apiServiceBaseUri + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                        .then(function (response) {
 
-                        $http.post(ngAuthSettings.apiServiceBaseUri + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-                            .then(function (response) {
+                        localStorageService.set('authorizationData', { token: response.data.access_token, userName: response.data.userName, refreshToken: response.data.refresh_token, useRefreshTokens: true });
 
-                            localStorageService.set('authorizationData', { token: response.data.access_token, userName: response.data.userName, refreshToken: response.data.refresh_token, useRefreshTokens: true });
+                        deferred.resolve(response);
 
-                            deferred.resolve(response);
-
-                        }, function (err) {
-                            _logOut();
-                            deferred.reject(err);
-                        });
-                    }
+                    }, function (err) {
+                        _logOut();
+                        deferred.reject(err);
+                    });
+                } else {
+                    deferred.reject();
                 }
 
                 return deferred.promise;
