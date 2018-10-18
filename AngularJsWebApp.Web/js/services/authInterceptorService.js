@@ -5,6 +5,8 @@ angular
         function ($q, $injector, $state, localStorageService) {
 
             var authInterceptorServiceFactory = {};
+            var $http;  // Cannot inject this - we'd get a circular reference
+            var _refreshTokenPending = false;
 
             var _request = function (config) {
 
@@ -19,20 +21,39 @@ angular
             };
 
             var _responseError = function (rejection) {
+                var deferred = $q.defer();
                 if (rejection.status === 401) {
-                    var authService = $injector.get('authService');
-                    var authData = localStorageService.get('authorizationData');
+                    if (!_refreshTokenPending) {
+                        var authService = $injector.get('authService');
+                        authService.refreshToken()
+                            .then(function (refreshResponse) {
+                                _refreshTokenPending = true;
 
-                    if (authData) {
-                        if (authData.useRefreshTokens) {
-                            $state.transitionTo('/refresh');
-                            return $q.reject(rejection);
-                        }
+                                $http = $http || $injector.get('$http');
+                                $http(rejection.config)
+                                    .then(function (retryResponse) {
+                                        _refreshTokenPending = false;
+                                        deferred.resolve(retryResponse);
+                                    },
+                                        function (retryResponse) {
+                                            deferred.reject(retryResponse);
+                                        });
+                            },
+                                function () {
+                                    _refreshTokenPending = false;
+                                    authService.logOut();
+                                    $state.transitionTo('/login');
+                                    deferred.reject(rejection);
+                                }
+                            );
+                    } else {
+                        deferred.reject(rejection);
                     }
-                    authService.logOut();
-                    $state.transitionTo('/login');
+                } else {
+                    deferred.reject(rejection);
                 }
-                return $q.reject(rejection);
+
+                return deferred.promise;
             };
 
             authInterceptorServiceFactory.request = _request;
