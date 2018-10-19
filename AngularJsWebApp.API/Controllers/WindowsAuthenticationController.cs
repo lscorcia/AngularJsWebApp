@@ -22,23 +22,27 @@ namespace AngularJsWebApp.API.Controllers
         {
         }
 
-        // GET api/Account/Register
-        [AllowAnonymous]
-        [HttpGet]
+        // GET sso/WindowsAuthentication/Logon
         [Route("Logon")]
-        public async Task<IHttpActionResult> Logon(string authenticationType, string clientId)
+        [HttpPost]
+        public async Task<IHttpActionResult> Logon(WindowsLogonModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             string authenticatedUserName = System.Web.HttpContext.Current.User.Identity.Name;
 
             // Generate the bearer token
-            var identity = new ClaimsIdentity(authenticationType);
+            var identity = new ClaimsIdentity(model.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Name, authenticatedUserName));
             identity.AddClaim(new Claim("sub", authenticatedUserName));
             identity.AddClaim(new Claim("role", "user"));
 
             var props = new AuthenticationProperties(new Dictionary<string, string>()
             {
-                { "as:client_id", (clientId == null) ? string.Empty : clientId },
+                { "as:client_id", model.ClientId ?? String.Empty },
                 { "userName", authenticatedUserName }
             });
 
@@ -53,7 +57,7 @@ namespace AngularJsWebApp.API.Controllers
             using (AuthRepository _repo = new AuthRepository())
             {
                 // retrieve client from database
-                var client = _repo.FindClient(clientId);
+                var client = _repo.FindClient(model.ClientId);
                 // only generate refresh token if client is registered
                 if (client != null)
                 {
@@ -68,11 +72,11 @@ namespace AngularJsWebApp.API.Controllers
                     // Generate the refresh toke
                     await Startup.OAuthServerOptions.RefreshTokenProvider.CreateAsync(contextRefresh);
 
-                    return Json(new { token = strToken, userName = authenticatedUserName, refresh_token = contextRefresh.Token, useRefreshTokens = true });
+                    return Json(new { access_token = strToken, userName = authenticatedUserName, refresh_token = contextRefresh.Token, useRefreshTokens = true });
                 }
             }
 
-            return Json(new { token = strToken, userName = authenticatedUserName, refresh_token = "", useRefreshTokens = false });
+            return Json(new { access_token = strToken, userName = authenticatedUserName, refresh_token = "", useRefreshTokens = false });
         }
     }
 }

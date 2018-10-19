@@ -32,25 +32,26 @@ angular
 
                 var deferred = $q.defer();
 
-                $http.post(ngAuthSettings.apiServiceBaseUri + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).then(function (response) {
+                $http.post(ngAuthSettings.apiServiceBaseUri + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                    .then(function (response) {
 
-                    if (loginData.useRefreshTokens) {
-                        localStorageService.set('authorizationData', { token: response.data.access_token, userName: loginData.userName, refreshToken: response.data.refresh_token, useRefreshTokens: true });
-                    }
-                    else {
-                        localStorageService.set('authorizationData', { token: response.data.access_token, userName: loginData.userName, refreshToken: "", useRefreshTokens: false });
-                    }
+                        if (loginData.useRefreshTokens) {
+                            localStorageService.set('authorizationData', { token: response.data.access_token, userName: loginData.userName, refreshToken: response.data.refresh_token, useRefreshTokens: true });
+                        }
+                        else {
+                            localStorageService.set('authorizationData', { token: response.data.access_token, userName: loginData.userName, refreshToken: "", useRefreshTokens: false });
+                        }
 
-                    _authentication.isAuth = true;
-                    _authentication.userName = loginData.userName;
-                    _authentication.useRefreshTokens = loginData.useRefreshTokens;
+                        _authentication.isAuth = true;
+                        _authentication.userName = loginData.userName;
+                        _authentication.useRefreshTokens = loginData.useRefreshTokens;
 
-                    deferred.resolve(response);
+                        deferred.resolve(response);
 
-                }, function (err) {
-                    _logOut();
-                    deferred.reject(err);
-                });
+                    }, function (err) {
+                        _logOut();
+                        deferred.reject(err);
+                    });
 
                 return deferred.promise;
 
@@ -110,6 +111,34 @@ angular
                 return deferred.promise;
             };
 
+            var _loginWindowsAuth = function () {
+                var deferred = $q.defer();
+
+                var data = { authenticationType: "bearer", clientId: ngAuthSettings.clientId };
+
+                $http.post(ngAuthSettings.apiServiceBaseUri + 'sso/WindowsAuthentication/Logon', data, { withCredentials: true })
+                    .then(function (response) {
+
+                        if (response.data.useRefreshTokens) {
+                            localStorageService.set('authorizationData', { token: response.data.access_token, userName: response.data.userName, refreshToken: response.data.refresh_token, useRefreshTokens: true });
+                        }
+                        else {
+                            localStorageService.set('authorizationData', { token: response.data.access_token, userName: response.data.userName, refreshToken: "", useRefreshTokens: false });
+                        }
+
+                        _authentication.isAuth = true;
+                        _authentication.userName = response.data.userName;
+                        _authentication.useRefreshTokens = response.data.useRefreshTokens;
+
+                        deferred.resolve(response);
+                    }, function (err) {
+                        _logOut();
+                        deferred.reject(err);
+                    });
+
+                return deferred.promise;
+            };
+
             authServiceFactory.saveRegistration = _saveRegistration;
             authServiceFactory.login = _login;
             authServiceFactory.logOut = _logOut;
@@ -117,6 +146,7 @@ angular
             authServiceFactory.authentication = _authentication;
             authServiceFactory.refreshToken = _refreshToken;
             authServiceFactory.isLoggedIn = _isLoggedIn;
+            authServiceFactory.loginWindowsAuth = _loginWindowsAuth;
 
             return authServiceFactory;
         }]);

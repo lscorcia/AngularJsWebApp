@@ -23,13 +23,16 @@
                                     </div>
                                     <input type="password" class="form-control" placeholder="Password" data-ng-model="loginData.password" required>
                                 </div>
-                                <div class="row">
+                                <div class="row mb-3">
                                     <div class="col-6">
                                         <button type="button" class="btn btn-primary px-4" data-ng-click="login()">Login</button>
                                     </div>
                                     <div class="col-6 text-right">
                                         <button type="button" class="btn btn-link px-0">Forgot password?</button>
                                     </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary btn-block" data-ng-click="loginWindowsAuth()">Login with Windows Auth</button>
                                 </div>
                             </form>
                         </div>

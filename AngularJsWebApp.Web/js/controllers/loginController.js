@@ -27,4 +27,19 @@ angular
                     });
             };
 
+            $scope.loginWindowsAuth = function () {
+
+                authService.loginWindowsAuth().then(function (response) {
+
+                        $state.go('app.main');
+
+                    },
+                    function (err) {
+                        if (err.data)
+                            $scope.message = err.data.error_description;
+                        else
+                            $scope.message = err.status + ' - ' + err.statusText;
+                    });
+            };
+
         }]);
